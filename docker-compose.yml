@@ -36,7 +36,8 @@ services:
       volumes:
         - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
         - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
-        - ./logstash/config/logstash.txt:/usr/share/logstash/config/logstash.txt:ro
+        - ./logstash/log/logstash.txt:/usr/share/logstash/config/logstash.txt:ro
+        - ./logstash/jdbc/postgresql-42.6.0.jar:/usr/share/logstash/config/postgresql-42.6.0.jar:ro
       ports:
         - "5044:5044"
         - "5000:5000/tcp"
@@ -48,6 +49,19 @@ services:
         - elastic
       depends_on:
         - elasticsearch
+        - postgres
+
+    postgres:
+      image: postgres:14.1-alpine
+      container_name: postgres_springboot
+      restart: always
+      environment:
+        - POSTGRES_USER=postgres1
+        - POSTGRES_PASSWORD=123
+      ports:
+        - '5433:5432'
+      networks:
+        - elastic
 
 networks:
   elastic:
