@@ -36,7 +36,7 @@ services:
       volumes:
         - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
         - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
-        - ./logstash/log/logstash.txt:/usr/share/logstash/config/logstash.txt:ro
+        - D:/ELK_Demo/logs:/usr/share/logstash/config/logs:ro
         - ./logstash/jdbc/postgresql-42.6.0.jar:/usr/share/logstash/config/postgresql-42.6.0.jar:ro
       ports:
         - "5044:5044"
