@@ -51,18 +51,6 @@ services:
         - elasticsearch
         - postgres
 
-    postgres:
-      image: postgres:14.1-alpine
-      container_name: postgres_springboot
-      restart: always
-      environment:
-        - POSTGRES_USER=postgres1
-        - POSTGRES_PASSWORD=123
-      ports:
-        - '5433:5432'
-      networks:
-        - elastic
-
 networks:
   elastic:
     driver: bridge
